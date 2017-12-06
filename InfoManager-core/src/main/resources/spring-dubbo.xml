@@ -1,0 +1,30 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://code.alibabatech.com/schema/dubbo          
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+       
+	<dubbo:application name="InfoManager-dubbo-core-provider"/>  
+   
+    <!-- 使用multicast广播注册中心暴露服务地址 -->  
+    <!--  <dubbo:registry address="multicast://224.5.6.7:1234" /> -->  
+   
+    <!-- 使用zookeeper注册中心暴露服务地址 -->  
+    <!-- <dubbo:registry id="InfoManager-dubbo-provider" address="zookeeper://112.74.209.163:2181" check="false" subscribe="false" register=""/>   -->
+    <dubbo:registry id="InfoManager-dubbo-provider" address="zookeeper://127.0.0.1:2181" check="false" subscribe="false" register=""/>  
+    <dubbo:protocol id="InfoManager-dubbo" host="127.0.0.1"  name="dubbo" port="20881"/>
+    <dubbo:provider registry="InfoManager-dubbo-provider" protocol="InfoManager-dubbo"/>
+    
+	<!-- 声明需要暴露的服务接口 -->
+	 <dubbo:service interface="cn.cclookme.info.api.college.service.ICollegeService" ref="collegeservice" timeout="50000"/> 
+	 <dubbo:service interface="cn.cclookme.info.api.course.service.ICourseService" ref="courseservice" timeout="50000"/> 
+	 <dubbo:service interface="cn.cclookme.info.api.courseschedule.service.IBasicsCourseScheduleService" ref="basicsCoursescheduleservice" timeout="50000"/> 
+	 <dubbo:service interface="cn.cclookme.info.api.courseschedule.service.IOptionalCourseScheduleService" ref="optionalcoursescheduleservice" timeout="50000"/> 
+	 <dubbo:service interface="cn.cclookme.info.api.curriculavariable.service.ICurriculaVariableService" ref="curriculavariableservice" timeout="50000"/> 
+	 <dubbo:service interface="cn.cclookme.info.api.score.service.IStudentScoreService" ref="studentscoreservice" timeout="50000"/> 
+	 <dubbo:service interface="cn.cclookme.info.api.specialty.service.ISpecialtyService" ref="specialtyservice" timeout="50000"/> 
+	 <dubbo:service interface="cn.cclookme.info.api.user.service.IStudentInfoService" ref="studentinfoservice" timeout="50000"/> 
+	 <dubbo:service interface="cn.cclookme.info.api.user.service.ITeacherInfoService" ref="teacherinfoservice" timeout="50000"/> 
+	 <dubbo:service interface="cn.cclookme.info.api.memcached.service.MemcachedService" ref="memcachedservice" timeout="50000"/> 
+</beans>

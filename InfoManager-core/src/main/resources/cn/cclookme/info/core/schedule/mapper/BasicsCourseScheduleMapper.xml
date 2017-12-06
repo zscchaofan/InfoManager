@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cclookme.info.core.schedule.mapper.BasicsCourseScheduleMapper" >
+  <resultMap id="BaseResultMap" type="cn.cclookme.info.model.schedule.BasicsCourseSchedule" >
+    <result column="course_code" property="courseCode" jdbcType="VARCHAR" />
+    <result column="specialty" property="specialty" jdbcType="VARCHAR" />
+    <result column="course_start_time" property="courseStartTime" jdbcType="VARCHAR" />
+    <result column="course_end_time" property="courseEndTime" jdbcType="VARCHAR" />
+    <result column="course_teacher" property="courseTeacher" jdbcType="VARCHAR" />
+    <result column="examination_time" property="examinationTime" jdbcType="VARCHAR" />
+    <result column="schooltime" property="schooltime" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.cclookme.info.model.schedule.BasicsCourseSchedule" >
+    insert into basics_course_schedule (course_code, specialty, course_start_time, 
+      course_end_time, course_teacher, examination_time, 
+      schooltime)
+    values (#{courseCode,jdbcType=VARCHAR}, #{specialty,jdbcType=VARCHAR}, #{courseStartTime,jdbcType=VARCHAR}, 
+      #{courseEndTime,jdbcType=VARCHAR}, #{courseTeacher,jdbcType=VARCHAR}, #{examinationTime,jdbcType=VARCHAR}, 
+      #{schooltime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertExcelList" parameterType="map" >
+    insert into ${tablename} (course_code, specialty, course_start_time, 
+      course_end_time, course_teacher, examination_time, 
+      schooltime)
+    values (#{courseCode,jdbcType=VARCHAR}, #{specialty,jdbcType=VARCHAR}, #{courseStartTime,jdbcType=VARCHAR}, 
+      #{courseEndTime,jdbcType=VARCHAR}, #{courseTeacher,jdbcType=VARCHAR}, #{examinationTime,jdbcType=VARCHAR}, 
+      #{schooltime,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="cn.cclookme.info.model.schedule.BasicsCourseSchedule" >
+    insert into basics_course_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseCode != null" >
+        course_code,
+      </if>
+      <if test="specialty != null" >
+        specialty,
+      </if>
+      <if test="courseStartTime != null" >
+        course_start_time,
+      </if>
+      <if test="courseEndTime != null" >
+        course_end_time,
+      </if>
+      <if test="courseTeacher != null" >
+        course_teacher,
+      </if>
+      <if test="examinationTime != null" >
+        examination_time,
+      </if>
+      <if test="schooltime != null" >
+        schooltime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseCode != null" >
+        #{courseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null" >
+        #{specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="courseStartTime != null" >
+        #{courseStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="courseEndTime != null" >
+        #{courseEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="courseTeacher != null" >
+        #{courseTeacher,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationTime != null" >
+        #{examinationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="schooltime != null" >
+        #{schooltime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="selectbystartansendtime" parameterType="map" resultMap="BaseResultMap">
+	select * from ${tablename} 
+		where specialty=#{specialty} and course_start_time  &gt; #{starttime} and course_end_time  &lt; #{endtime}  
+  </select>
+  <select id="selectbystartansendtimeandcourse" parameterType="map" resultMap="BaseResultMap">
+	select * from ${tablename} 
+		where course_code =#{courseCode} and specialty=#{specialty} and course_start_time = #{courseStartTime} and course_end_time = #{courseEndTime}  
+  </select>
+  <select id="selectbyspecialty" parameterType="map" resultMap="BaseResultMap">
+	select * from ${tablename} 
+		where  specialty=#{specialty}  limit #{page},10  
+  </select>
+	<select id="selectcountbyspecialty" parameterType="map" resultType="java.lang.Integer">
+	select count(*) from ${tablename} 
+		where  specialty=#{specialty}  
+  </select>
+</mapper>

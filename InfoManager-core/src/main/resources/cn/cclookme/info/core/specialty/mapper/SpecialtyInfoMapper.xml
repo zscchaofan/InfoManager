@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cclookme.info.core.specialty.mapper.SpecialtyInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.cclookme.info.model.specialty.SpecialtyInfo">
+    <result column="specialty_code" jdbcType="VARCHAR" property="specialtyCode" />
+    <result column="specialty" jdbcType="VARCHAR" property="specialty" />
+    <result column="college" jdbcType="VARCHAR" property="college" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.cclookme.info.model.specialty.SpecialtyInfo">
+    insert into specialty_info (specialty_code, specialty, college
+      )
+    values (#{specialtyCode,jdbcType=VARCHAR}, #{specialty,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.cclookme.info.model.specialty.SpecialtyInfo">
+    insert into specialty_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="specialtyCode != null">
+        specialty_code,
+      </if>
+      <if test="specialty != null">
+        specialty,
+      </if>
+      <if test="college != null">
+        college,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="specialtyCode != null">
+        #{specialtyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null">
+        #{specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null">
+        #{college,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectSpecialInfoBySpecialnameAndCollegecode" parameterType="map" resultMap="BaseResultMap">
+  	select * from specialty_info
+  	where specialty=#{specialty} and college =#{college}
+  </select>
+  <select id="selectSpecialInfoBySpecialname" parameterType="map" resultMap="BaseResultMap">
+  	select * from specialty_info
+  	where specialty=#{specialty}
+  </select>
+</mapper>

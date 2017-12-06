@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cclookme.info.core.course.mapper.CourseInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.cclookme.info.model.course.CourseInfo" >
+    <id column="course_code" property="courseCode" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="course_credit" property="courseCredit" jdbcType="DOUBLE" />
+    <result column="course_teacher" property="courseTeacher" jdbcType="VARCHAR" />
+    <result column="pass_mark" property="passMark" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    course_code, course_name, course_credit, course_teacher, pass_mark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_info
+    where course_code = #{courseCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from course_info
+    where course_code = #{courseCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.cclookme.info.model.course.CourseInfo" >
+    insert into course_info (course_code, course_name, course_credit, 
+      course_teacher, pass_mark)
+    values (#{courseCode,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, #{courseCredit,jdbcType=DOUBLE}, 
+      #{courseTeacher,jdbcType=VARCHAR}, #{passMark,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.cclookme.info.model.course.CourseInfo" >
+    insert into course_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseCode != null" >
+        course_code,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="courseCredit != null" >
+        course_credit,
+      </if>
+      <if test="courseTeacher != null" >
+        course_teacher,
+      </if>
+      <if test="passMark != null" >
+        pass_mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseCode != null" >
+        #{courseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCredit != null" >
+        #{courseCredit,jdbcType=DOUBLE},
+      </if>
+      <if test="courseTeacher != null" >
+        #{courseTeacher,jdbcType=VARCHAR},
+      </if>
+      <if test="passMark != null" >
+        #{passMark,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cclookme.info.model.course.CourseInfo" >
+    update course_info
+    <set >
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCredit != null" >
+        course_credit = #{courseCredit,jdbcType=DOUBLE},
+      </if>
+      <if test="courseTeacher != null" >
+        course_teacher = #{courseTeacher,jdbcType=VARCHAR},
+      </if>
+      <if test="passMark != null" >
+        pass_mark = #{passMark,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where course_code = #{courseCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.cclookme.info.model.course.CourseInfo" >
+    update course_info
+    set course_name = #{courseName,jdbcType=VARCHAR},
+      course_credit = #{courseCredit,jdbcType=DOUBLE},
+      course_teacher = #{courseTeacher,jdbcType=VARCHAR},
+      pass_mark = #{passMark,jdbcType=DOUBLE}
+    where course_code = #{courseCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,226 @@
+@charset "utf-8";
+
+*{font-size:12px;border:0;margin:0;padding:0;}
+body{
+	font-family:'微软雅黑';
+	margin:0 auto;
+	background: rgb(245, 245, 245);
+	color: rgb(68, 68, 68);
+}
+ul{display:block;margin:0;padding:0;list-style:none;}
+li{display:block;margin:0;padding:0;list-style: none;}
+img{border:0;}
+dl,dt,dd,span{margin:0;padding:0;display:block;}
+
+/*cloud*/
+
+#mainBody {width:100%;height:100%;position:absolute;z-index:-1;}
+.cloud {position:absolute;top:0px;left:0px;width:100%;height:100%;background:url(../images/cloud.png) no-repeat;z-index:1;opacity:0.5;}
+#cloud2 {z-index:2;}
+.paperTop{height:30px; position:fixed; top:0; background:url(../images/loginbg1.png) repeat-x;z-index:100; width:100%;}
+.paperTop span{color:#fff; line-height:30px; background:url(../images/loginsj.png) no-repeat 15px 10px; text-indent:40px; color:#afc5d2; float:left;}
+.paperTop ul{float:right; padding-right:30px;}
+.paperTop ul li{float:left; margin-left:20px; line-height:30px;color:#afc5d2;}
+
+
+.btn{width:137px;height:35px; background:url(../images/btnbg.png) no-repeat; font-size:14px;font-weight:bold;color:#fff; cursor:pointer;}
+
+#main{
+	width:800px;
+	min-height:600px;
+	background:#fff;
+	margin:40px 0 50px 12%;
+	border:1px solid #ccc;
+	
+}
+
+#main .paperInfo{
+	width:90%;
+	margin:20px auto;
+}
+#main .paperInfo h1{
+	font-size:20px;
+	font-weight:normal;
+	min-width:100px;
+	text-align:center;
+	color:#666;
+	padding:10px;
+	border-bottom:2px solid #ddd;
+}
+#main .paperInfo ul{
+	float:left;
+	width:100%;
+	text-align:cneter;
+	list-style: none;	
+	margin:10px auto;
+	padding-bottom: 20px;
+	
+}
+#main .paperInfo ul li{
+	display: inline;
+	float:left;
+	height:60px;
+	width:130px;
+	border-right:1px solid #ccc;
+	text-align: center;
+	margin:10px 0 0 28px;
+}
+#main .paperInfo ul li p{
+	line-height: 24px;
+}
+
+#main dl.question{
+	width:800px;
+	border-top:3px solid #ccc;
+	padding-bottom:15px;
+}
+
+#main dl.question dt{
+	width:96%;
+	padding:2%;
+	font-size:14px;
+	line-height:150%;
+	background:#fffffc;
+}
+#main div.type{
+	width:96%;
+	padding:2%;
+	font-size:14px;
+	line-height:150%;
+	background-color: rgb(252, 249, 239);
+	font-family: "微软雅黑";
+	color: rgb(153, 153, 153);
+	margin: 0 0 10px 0;
+	border-top:2px solid #eee;
+	clear: both;
+}
+#main div.type h5{
+	color:#999;
+	line-height: 32px; 
+	font-family: "微软雅黑";
+	font-size: 16px;
+}
+
+#main dl.question  dd.option{
+	font-size:14px;
+	padding:0 5px;
+	color:333;
+}
+
+
+#main dl.question  dd.option label{
+	margin-left:10px;
+	display:block;
+	height:30px;
+	line-height:30px;
+}
+#main dl.question  dd.option label input{
+	position: relative;
+	top:3px;
+	right:3px;
+}
+#main dl.question  dd.option:hover{
+	cursor: pointer;
+	background:rgb(252, 249, 239);
+}
+#main dl.question  dd.selopt{
+	cursor: pointer;
+	background:rgb(252, 249, 239);
+}
+
+#answerCard{
+	position: fixed;
+	top: 40px;
+	left:980px;
+	width:190px;
+	min-height:200px;
+	border:1px solid #ccc;
+	background: #fff;
+	padding-bottom: 8px;
+}
+
+
+#answerCard .time{
+	width:100%;
+	border-bottom:1px solid #ccc;
+	padding-bottom:10px;
+}
+#answerCard .time img{
+	border:none;
+	margin:0 0 0 25px;
+}
+#answerCard .time-item strong {
+	background:#fff;
+	color:#666;
+	line-height:29px;
+	font-size:16px;
+	font-family:Arial;
+	padding:0 11px;
+	margin-right:4px;
+	border-radius:5px;
+	box-shadow:1px 1px 3px rgba(0,0,0,0.2);
+}
+#answerCard #day_show {
+	float:left;
+	line-height:20px;
+	color:#c71c60;
+	font-size:16px;
+	margin:0 5px;
+	font-family:Arial,Helvetica,sans-serif;
+}
+#answerCard .item-title .unit {
+	background:none;
+	line-height:20px;
+	font-size:16px;
+	padding:0 10px;
+	float:left;
+}
+
+#answerCard  .card{
+	padding: 6px;
+}
+#answerCard  .card a{
+	float:left;
+	margin:5px;
+	border:1px solid #eee;
+	padding: 4px;
+	text-decoration:none;
+	color:#666;
+}
+#answerCard  .card a:hover{
+	background:#0099FF;
+	color:#fff;
+	border:1px solid #eee;
+}
+#answerCard  .card .selected{
+	background:#0099FF;
+	color:#fff;
+	border:1px solid #eee;
+}
+ 
+ #answerCard .submitTest{
+ 	float:left;
+ 	width:100%;
+	border-top:1px solid #ccc;
+ }
+  #answerCard .submitTest p{
+  	padding:14px 0 10px 25px;
+  }
+  
+  
+  
+  /*ajax交互*/
+
+#loading,#error{
+	display:none;
+	background:url(../images/loading.gif) no-repeat 20px center;
+	line-height:25px;
+	font-size:14px;
+	font-weight:bold;
+	text-indent:40px;
+	color:#666;
+	float:left;
+	}
+#error{
+	background:url(../images/error.png) no-repeat 20px center;
+}
